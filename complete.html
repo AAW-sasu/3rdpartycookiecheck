@@ -7,12 +7,11 @@ function supportsLocalStorage() {
         return false;
     }
 }
- if (window.parent) {
-    console.log('Supports local:', supportsLocalStorage());
-	if (/thirdparty=yes/.test(document.cookie)) {
-		window.parent.postMessage('MM:3PCsupported', '*');
-	} else {
-		window.parent.postMessage('MM:3PCunsupported', '*');
+if (window.parent) {
+    if (/thirdparty=yes/.test(document.cookie) && supportsLocalStorage()) {
+        window.parent.postMessage('MM:3PCsupported', '*');
+    } else {
+        window.parent.postMessage('MM:3PCunsupported', '*');
 	}
  }
 </script>

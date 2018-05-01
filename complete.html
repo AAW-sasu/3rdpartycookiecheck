@@ -1,6 +1,14 @@
 <body>
 <script>
+function supportsLocalStorage() {
+    try {
+        return 'localStorage' in window && window['localStorage'] !== null;
+    } catch(e) {
+        return false;
+    }
+}
  if (window.parent) {
+    console.log('Supports local:', supportsLocalStorage());
 	if (/thirdparty=yes/.test(document.cookie)) {
 		window.parent.postMessage('MM:3PCsupported', '*');
 	} else {
